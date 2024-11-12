@@ -1,0 +1,25 @@
+version: '3'
+services:
+  auth-service:
+    build: ./auth_service
+    ports:
+      - '8000:8000'
+
+  blog-service:
+    build: ./blog_service
+    ports:
+      - '8001:8001'
+
+  comment-service:
+    build: ./comment_service
+    ports:
+      - '8002:8002'
+
+  frontend:
+    build: ./frontend_service
+    ports:
+      - '3000:3000'
+    depends_on:
+      - auth-service
+      - blog-service
+      - comment-service
